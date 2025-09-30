@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Travel Planner - Incredible India</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <div class="header__brand">
+                    <i class="fas fa-globe-asia"></i>
+                    <span>AI Travel Planner - Incredible India</span>
+                </div>
+                <nav class="header__nav">
+                    <a href="#home">Home</a>
+                    <a href="#plan-trip">Plan Trip</a>
+                    <a href="#destinations">Destinations</a>
+                    <a href="#weather">Weather</a>
+                    <a href="#safety">Safety</a>
+                    <a href="#about">About</a>
+                </nav>
+                <div class="header__language">
+                    <select id="languageSelector" class="form-control">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी</option>
+                        <option value="ta">தமிழ்</option>
+                        <option value="te">తెలుగు</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero__background"></div>
+        <div class="container">
+            <div class="hero__content">
+                <h1 class="hero__title">Plan Your Perfect India Journey with AI</h1>
+                <p class="hero__subtitle">Discover incredible destinations, immerse in rich culture, and create unforgettable memories with our AI-powered travel planner</p>
+                
+                <div class="hero__form-container">
+                    <form id="tripPlanningForm" class="trip-form">
+                        <div class="trip-form__grid">
+                            <div class="form-group">
+                                <label class="form-label">Destination Preference</label>
+                                <select id="destination" class="form-control" required>
+                                    <option value="">Choose a region</option>
+                                    <option value="north">North India (Delhi, Agra, Rajasthan)</option>
+                                    <option value="south">South India (Kerala, Tamil Nadu, Karnataka)</option>
+                                    <option value="west">West India (Goa, Mumbai, Gujarat)</option>
+                                    <option value="east">East India (West Bengal, Odisha)</option>
+                                    <option value="northeast">Northeast India</option>
+                                    <option value="rajasthan">Rajasthan Heritage Circuit</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Travel Duration</label>
+                                <select id="duration" class="form-control" required>
+                                    <option value="">Select duration</option>
+                                    <option value="3-5">3-5 days</option>
+                                    <option value="7">1 week</option>
+                                    <option value="14">2 weeks</option>
+                                    <option value="21-28">3-4 weeks</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Budget Range (per day)</label>
+                                <select id="budget" class="form-control" required>
+                                    <option value="">Select budget</option>
+                                    <option value="budget">Budget ₹2,000-4,000/day</option>
+                                    <option value="comfort">Comfort ₹4,000-7,000/day</option>
+                                    <option value="luxury">Luxury ₹10,000+/day</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Number of Travelers</label>
+                                <input type="number" id="travelers" class="form-control" min="1" max="20" placeholder="4" required>
+                            </div>
+                            
+                            <div class="form-group form-group--full">
+                                <label class="form-label">Travel Interests</label>
+                                <div class="interests-grid">
+                                    <label class="interest-checkbox">
+                                        <input type="checkbox" name="interests" value="culture">
+                                        <span>Culture & Heritage</span>
+                                    </label>
+                                    <label class="interest-checkbox">
+                                        <input type="checkbox" name="interests" value="adventure">
+                                        <span>Adventure</span>
+                                    </label>
+                                    <label class="interest-checkbox">
+                                        <input type="checkbox" name="interests" value="spiritual">
+                                        <span>Spiritual</span>
+                                    </label>
+                                    <label class="interest-checkbox">
+                                        <input type="checkbox" name="interests" value="nature">
+                                        <span>Nature & Wildlife</span>
+                                    </label>
+                                    <label class="interest-checkbox">
+                                        <input type="checkbox" name="interests" value="food">
+                                        <span>Food</span>
+                                    </label>
+                                    <label class="interest-checkbox">
+                                        <input type="checkbox" name="interests" value="beaches">
+                                        <span>Beaches</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Travel Dates</label>
+                                <input type="date" id="travelDate" class="form-control" required>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn--primary btn--lg hero__cta">
+                            <i class="fas fa-magic"></i>
+                            Generate AI Itinerary
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Itinerary Section -->
+    <section id="plan-trip" class="itinerary-section hidden">
+        <div class="container">
+            <div class="section-header">
+                <h2>Your Personalized AI Itinerary</h2>
+                <p>Crafted specially for your preferences and budget</p>
+            </div>
+            
+            <div class="itinerary-container">
+                <div class="itinerary-header">
+                    <h3 id="itineraryTitle">10-Day Rajasthan Cultural Heritage Tour</h3>
+                    <div class="itinerary-meta">
+                        <span class="itinerary-budget">Total Budget: <strong>₹45,000 for family of 4</strong></span>
+                        <div class="itinerary-actions">
+                            <button class="btn btn--secondary" id="modifyBtn">
+                                <i class="fas fa-edit"></i> Modify Itinerary
+                            </button>
+                            <button class="btn btn--primary" id="bookNowBtn">
+                                <i class="fas fa-calendar-check"></i> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="itinerary-timeline" id="itineraryTimeline">
+                    <!-- Itinerary days will be populated here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Destinations -->
+    <section id="destinations" class="destinations-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Popular Destinations in India</h2>
+                <p>Discover the most amazing places to visit in Incredible India</p>
+            </div>
+            
+            <div class="destinations-grid" id="destinationsGrid">
+                <!-- Destination cards will be populated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Real-time Insights -->
+    <section id="weather" class="insights-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Real-time Travel Insights</h2>
+                <p>Stay updated with weather, events, and travel conditions</p>
+            </div>
+            
+            <div class="insights-grid">
+                <div class="card insights-card">
+                    <div class="card__body">
+                        <h3><i class="fas fa-cloud-sun"></i> Weather Updates</h3>
+                        <div class="weather-grid" id="weatherGrid">
+                            <!-- Weather info will be populated here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card insights-card">
+                    <div class="card__body">
+                        <h3><i class="fas fa-calendar-alt"></i> Upcoming Festivals</h3>
+                        <div class="festivals-list" id="festivalsList">
+                            <!-- Festivals will be populated here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card insights-card">
+                    <div class="card__body">
+                        <h3><i class="fas fa-exchange-alt"></i> Currency Exchange</h3>
+                        <div class="currency-rates">
+                            <div class="currency-item">
+                                <span>1 USD = ₹83.25</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>1 EUR = ₹89.15</span>
+                            </div>
+                            <div class="currency-item">
+                                <span>1 GBP = ₹102.30</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Safety & Emergency -->
+    <section id="safety" class="safety-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Safety & Emergency Information</h2>
+                <p>Your safety is our priority - important contacts and tips</p>
+            </div>
+            
+            <div class="safety-grid">
+                <div class="card safety-card">
+                    <div class="card__body">
+                        <h3><i class="fas fa-phone-alt"></i> Emergency Contacts</h3>
+                        <div class="emergency-contacts" id="emergencyContacts">
+                            <!-- Emergency contacts will be populated here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card safety-card">
+                    <div class="card__body">
+                        <h3><i class="fas fa-shield-alt"></i> Safety Tips</h3>
+                        <ul class="safety-tips">
+                            <li>Keep copies of important documents</li>
+                            <li>Stay hydrated and use bottled water</li>
+                            <li>Respect local customs and dress codes</li>
+                            <li>Use licensed taxis and guides</li>
+                            <li>Keep emergency contacts handy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Integration -->
+    <section class="booking-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Book Your Journey</h2>
+                <p>Seamless booking integration with trusted platforms</p>
+            </div>
+            
+            <div class="booking-grid" id="bookingGrid">
+                <!-- Booking platform cards will be populated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <i class="fas fa-globe-asia"></i>
+                    <span>AI Travel Planner - Incredible India</span>
+                </div>
+                <p>&copy; 2025 AI Travel Planner. Discover Incredible India with intelligent travel planning.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-widget__toggle" id="chatToggle">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="chat-widget__window hidden" id="chatWindow">
+            <div class="chat-widget__header">
+                <span>AI Travel Assistant</span>
+                <button class="chat-widget__close" id="chatClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-widget__messages" id="chatMessages">
+                <div class="chat-message chat-message--bot">
+                    <p>Hi! I'm your AI travel assistant. Ask me anything about traveling in India!</p>
+                </div>
+            </div>
+            <div class="chat-widget__input">
+                <input type="text" id="chatInput" placeholder="Type your question..." class="form-control">
+                <button id="chatSend" class="btn btn--primary">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="destinationModal" class="modal hidden">
+        <div class="modal__content">
+            <div class="modal__header">
+                <h3 id="modalDestinationName">Destination Details</h3>
+                <button class="modal__close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal__body" id="modalDestinationContent">
+                <!-- Destination details will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
